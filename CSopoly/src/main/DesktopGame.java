@@ -14,6 +14,12 @@ public class DesktopGame {
 		cfg.width = Game.V_WIDTH * Game.SCALE;
 		cfg.height = Game.V_HEIGHT * Game.SCALE;
 		
+		//Not using GL30. Set to false to speed up loading of game.
+		cfg.useGL30 = false;
+		
+		//Prevents resizing of frame.
+		cfg.resizable = false;
+		
 		//Creates the game frame.
 		new LwjglApplication(new Game(), cfg);
 	}
