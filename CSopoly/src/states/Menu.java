@@ -1,5 +1,7 @@
 package states;
 
+import main.Game;
+
 import org.lwjgl.opengl.GL11;
 
 import buttons.MenuButton;
@@ -40,13 +42,29 @@ public class Menu extends GameState {
 		myShapeRenderer.begin(ShapeType.Line);
 		myShapeRenderer.setColor(Color.BLACK);
 		//Draws buttons on screen
-		MenuButton test = new MenuButton(myShapeRenderer, "", 50, 50, 50, 50);
+		int standardbuttonHeight = 45;
+		int standardButtonWidth = Game.V_WIDTH / 14 * 13;
+		
+		MenuButton playButton = new MenuButton("Play", Game.V_WIDTH / 2, Game.V_HEIGHT * Game.SCALE / 15 * 14, standardbuttonHeight, standardButtonWidth);
+		drawButton(playButton, myShapeRenderer);
 		myShapeRenderer.end();
 	}
 
 	@Override
 	public void dispose() {
 		
+	}
+	
+	//Draws the selected button
+	private void drawButton(MenuButton button, ShapeRenderer sr){
+		if(!button.getIsDrawn()){
+			sr.setColor(Color.BLACK);
+			sr.rect(button.getX(), button.getY(), button.getWidth(), button.getHeight());
+		}
+		else {
+			//Prevents drawing of multiple buttons
+			System.out.println(button.getName() + " is already drawn");
+		}
 	}
 
 }
