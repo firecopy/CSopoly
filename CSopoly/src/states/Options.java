@@ -1,7 +1,5 @@
 package states;
 
-import org.lwjgl.opengl.GL11;
-
 import com.badlogic.gdx.Gdx;
 
 import handlers.GameStateManager;
