@@ -12,8 +12,11 @@ public class GameStateManager {
 	
 	private Stack<GameState> gameStates;
 	
+	//The Different game states you can choose from.
 	public static final int PLAY = 1;
 	public static final int MENU = 2;
+	public static final int OPTIONS = 3;
+	
 	public GameStateManager(Game game) {
 		this.game = game;
 		gameStates = new Stack<GameState>();
@@ -45,6 +48,7 @@ public class GameStateManager {
 		return null;
 	}
 	
+	//Used to change between the different states
 	public void setState(int state) {
 		popState();
 		pushState(state);
