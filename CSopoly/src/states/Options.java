@@ -1,7 +1,5 @@
 package states;
 
-import com.badlogic.gdx.Gdx;
-
 import handlers.GameStateManager;
 
 public class Options extends GameState {
