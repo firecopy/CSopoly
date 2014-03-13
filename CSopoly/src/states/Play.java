@@ -25,7 +25,7 @@ public class Play extends GameState{
 	public void render() {
 		//Documentation for clear color
 		//http://www.opengl.org/sdk/docs/man2/xhtml/glClearColor.xml
-		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 		
 	}

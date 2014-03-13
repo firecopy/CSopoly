@@ -16,23 +16,35 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import handlers.GameStateManager;
+import handlers.InputHandler;
 
 public class Menu extends GameState {
 
 	//Used to manage shapes, textures, and text
-	ShapeRenderer myShapeRenderer = new ShapeRenderer();
-	SpriteBatch mySpriteBatch = new SpriteBatch();
+	ShapeRenderer myShapeRenderer;
+	SpriteBatch mySpriteBatch;
+	FreeTypeFontGenerator fontGenerator;
+	BitmapFont titleFont;
+	BitmapFont buttonFont;
 	
-	BitmapFont titleFont = new BitmapFont();
-	BitmapFont buttonFont = new BitmapFont();
-	
-	int buttonFontSize = 24;
-	
+	//Font for buttons
+	int buttonFontSize = Game.V_HEIGHT / 19 * 2;
+	InputHandler mine;
+	//Constructor
 	public Menu(GameStateManager gsm) {
 		super(gsm);
-		FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("src/assets/fonts/BASIF___.ttf"));
+		mine = new InputHandler(gsm);
+		fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("src/assets/fonts/BASIF___.ttf"));
+		
+		//Used to manage shape and textures
+		myShapeRenderer = new ShapeRenderer();
+		mySpriteBatch = new SpriteBatch();
+		
+		//Initializes fonts used
 		buttonFont = fontGenerator.generateFont(buttonFontSize);
-		titleFont = fontGenerator.generateFont(50);
+		titleFont = fontGenerator.generateFont(buttonFontSize * 2);
+		
+		//Stops generating fonts
 		fontGenerator.dispose();
 	}
 
@@ -49,8 +61,9 @@ public class Menu extends GameState {
 	@Override
 	public void render() {
 		
+		//Game screen width and height
 		int screenWidth = Game.V_WIDTH * Game.SCALE;
-		int screenHeight = Game.V_WIDTH * Game.SCALE;
+		int screenHeight = Game.V_HEIGHT * Game.SCALE;
 		
 		//Documentation for clear color
 		//http://www.opengl.org/sdk/docs/man2/xhtml/glClearColor.xml
@@ -65,8 +78,8 @@ public class Menu extends GameState {
 		
 		myShapeRenderer.setColor(Color.BLACK);
 		
-		//Draws buttons on screen
-		int standardbuttonHeight = 45;
+		//Button height and width, reused for each button.
+		int standardButtonHeight = screenHeight / 19 * 2;
 		int standardButtonWidth = Game.V_WIDTH / 14 * 13;
 		
 		
@@ -74,20 +87,23 @@ public class Menu extends GameState {
 		//All fonts downloaded from openfontlibrary.org and 1001 Free Fonts
 	
 		//TODO Deprecated. Find some other way to read fonts
-
 		buttonFont.setColor(Color.BLACK);
 		titleFont.setColor(Color.BLACK);
-		MenuButton playButton = new MenuButton("Play", Game.V_WIDTH / 2, Game.V_HEIGHT * Game.SCALE / 15 * 12, standardbuttonHeight, standardButtonWidth);
-		MenuButton optionsButton = new MenuButton("Options", Game.V_WIDTH / 2, Game.V_HEIGHT * Game.SCALE / 15 * 10, standardbuttonHeight, standardButtonWidth);
-		MenuButton creditsButton = new MenuButton("Credits", Game.V_WIDTH / 2, Game.V_HEIGHT * Game.SCALE / 15 * 8, standardbuttonHeight, standardButtonWidth);
-		MenuButton exitButton = new MenuButton("Exit", Game.V_WIDTH / 2, Game.V_HEIGHT * Game.SCALE / 15 * 6, standardbuttonHeight, standardButtonWidth);
+		
+		mine.render();
+		
+		//The buttons
+		MenuButton playButton = new MenuButton("Play", Game.V_WIDTH / 2, standardButtonHeight / 2 * 11, standardButtonHeight, standardButtonWidth);
+		MenuButton optionsButton = new MenuButton("Options", Game.V_WIDTH / 2, standardButtonHeight / 2 * 8, standardButtonHeight, standardButtonWidth);
+		MenuButton creditsButton = new MenuButton("Credits", Game.V_WIDTH / 2, standardButtonHeight / 2 * 5, standardButtonHeight, standardButtonWidth);
+		MenuButton exitButton = new MenuButton("Exit", Game.V_WIDTH / 2, standardButtonHeight / 2 * 2, standardButtonHeight, standardButtonWidth);
 	
 		drawButton(playButton);
 		drawButton(optionsButton);
 		drawButton(creditsButton);
 		drawButton(exitButton);
 		
-		titleFont.draw(mySpriteBatch, "CSopoly", 50, 100);
+		titleFont.draw(mySpriteBatch, "CSopoly", Game.V_WIDTH / 2, standardButtonHeight / 2 * 17);
 		
 		mySpriteBatch.end();
 		myShapeRenderer.end();
