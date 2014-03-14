@@ -2,6 +2,7 @@ package main;
 
 //libGDX imports
 import handlers.GameStateManager;
+import handlers.GameInputProcessor;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -44,6 +45,7 @@ public class Game implements ApplicationListener {
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, V_WIDTH, V_HEIGHT);
 		
+		Gdx.input.setInputProcessor(new GameInputProcessor());
 		hudCam = new OrthographicCamera();
 		hudCam.setToOrtho(false, V_WIDTH, V_HEIGHT);
 		

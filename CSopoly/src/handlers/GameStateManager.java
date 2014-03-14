@@ -2,6 +2,8 @@ package handlers;
 
 import java.util.Stack;
 
+import com.badlogic.gdx.Gdx;
+
 import states.GameState;
 import states.Menu;
 import states.Play;
@@ -12,10 +14,12 @@ public class GameStateManager {
 	
 	private Stack<GameState> gameStates;
 	
-	//The Different game states you can choose from.
+	//The different game states you can choose from.
 	public static final int PLAY = 1;
-	public static final int MENU = 2;
-	public static final int OPTIONS = 3;
+	public static final int OPTIONS = 2;
+	public static final int CREDITS = 3;
+	public static final int EXIT = 4;
+	public static final int MENU = 5;
 	
 	public GameStateManager(Game game) {
 		this.game = game;
@@ -41,8 +45,24 @@ public class GameStateManager {
 			return new Play(this);
 		}
 		
+		//TODO Create an options class
+		if(state == OPTIONS) {
+			return new Play(this);
+		}
+		
+		//TODO Create a credits class
+		if(state == CREDITS){
+			return new Play(this);
+		}
+		
 		if(state == MENU) {
 			return new Menu(this);
+		}
+		
+		if(state == EXIT) {
+			Gdx.app.exit();
+			//TODO Create a proper exit;
+			return null;
 		}
 		
 		return null;
