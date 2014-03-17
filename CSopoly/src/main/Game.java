@@ -1,6 +1,9 @@
 package main;
 
 //libGDX imports
+import org.lwjgl.opengl.GL11;
+
+import handlers.GameKeys;
 import handlers.GameStateManager;
 import handlers.GameInputProcessor;
 
@@ -55,15 +58,21 @@ public class Game implements ApplicationListener {
 	@Override
 	public void render() {
 		
-		//Time accumuulated is time between frames person
+		
+		//Time accumulated is time between frames person
 		//seconds
 		accum += Gdx.graphics.getDeltaTime();
 		
 		while(accum >= STEP){
 			accum -= STEP;
+			//Only allows gameState to update 60 times a second.
+			//AKA 60 Frames/Second
 			gsm.update(STEP);
 			gsm.render();
+			//Determines the difference between a key press and a key hold.
+			GameKeys.update();
 		}
+		
 	}
 	
 	@Override
