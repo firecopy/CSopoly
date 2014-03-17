@@ -113,6 +113,8 @@ public class Menu extends GameState {
 		handleInput();
 	}
 
+	Double t = 0.0;
+	
 	@Override
 	public void render() {
 		
@@ -153,9 +155,18 @@ public class Menu extends GameState {
 		drawButton(exitButton);
 		*/
 		mySpriteBatch.end();
+		if(t < 1000.0){ t += 0.01;} else{
+			t = -1000.0;
+		}
+		myShapeRenderer.rect( (int) (100 *Math.cos(t)) + (int)(screenWidth/2 + t),(int) (50 *Math.sin(t * t)) + (int)(t+ screenHeight/2),50, 50);
+		myShapeRenderer.rect( (int) (100 *Math.cos(t * t)) + (int)(screenWidth/2 + t),(int) (50 *Math.sin(t)) + (int)(t+ screenHeight/2),50, 50);
+		myShapeRenderer.rect( (int) (50 *Math.cos(t * t)) + (int)(screenWidth/2 + t),(int) (50 *Math.sin(t * t)) + (int)(t+ screenHeight/2),50, 50);
+		myShapeRenderer.rect( (int) (t *Math.cos(t * t)) + (int)(screenWidth/2 + t),(int) (t * Math.sin(t * t)) + (int)(t+ screenHeight/2),50, 50);
+		myShapeRenderer.rect( (int) (t *Math.cos(t * t)) + (int)(screenWidth/2 + t - 30),(int) (t * Math.sin(t * t)) + (int)(t+ screenHeight/2),(int) (t * Math.sin(t + screenHeight/2)), 50);
+		myShapeRenderer.rect( (int) (t *Math.cos(t * t) - 124) + (int)(screenWidth/2 + t - 50), -1 * (int) (t * Math.sin(t * t)) + (int)(t+ screenHeight/2),(int) (t * Math.sin(t + screenHeight/2)), (int) (t *Math.cos(t * screenHeight/2)));
 		myShapeRenderer.end();
 
-
+		
 		
 	}
 
