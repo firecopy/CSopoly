@@ -6,8 +6,16 @@ public class Player {
 	int myMoney;
 	
 	public Player(String name, int startingMoney){
-		myName = "Name";
+		myName = name;
 		myMoney = startingMoney;
+	}
+	
+	public int getMyMoney(){
+		return myMoney;
+	}
+	
+	public String getMyName(){
+		return myName;
 	}
 	
 	

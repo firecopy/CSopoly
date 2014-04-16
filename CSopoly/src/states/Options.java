@@ -1,10 +1,14 @@
 package states;
 
+import org.lwjgl.opengl.GL11;
+
+import com.badlogic.gdx.Gdx;
+
 import handlers.GameStateManager;
 
 public class Options extends GameState {
 
-	protected Options(GameStateManager gsm) {
+	public Options(GameStateManager gsm) {
 		super(gsm);
 	}
 	
@@ -20,7 +24,8 @@ public class Options extends GameState {
 
 	@Override
 	public void render() {
-		
+		Gdx.gl.glClearColor(1, 1, 1, 1);
+		Gdx.gl.glClear(GL11.GL_COLOR_BUFFER_BIT);
 	}
 
 	@Override

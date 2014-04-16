@@ -1,7 +1,5 @@
 package buttons;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-
 public class MenuButton {
 	
 	//Traits of the buttons

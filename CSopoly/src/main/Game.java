@@ -1,8 +1,5 @@
 package main;
 
-//libGDX imports
-import org.lwjgl.opengl.GL11;
-
 import handlers.GameKeys;
 import handlers.GameStateManager;
 import handlers.GameInputProcessor;

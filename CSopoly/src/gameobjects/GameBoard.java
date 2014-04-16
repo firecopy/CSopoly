@@ -19,7 +19,7 @@ public class GameBoard {
 		playerList.add(player);
 	}
 	
-	private int getPlayerListSize(){
+	public int getPlayerListSize(){
 		return playerList.size();
 	}
 	

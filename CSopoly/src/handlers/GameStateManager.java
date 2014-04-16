@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 
 import states.GameState;
 import states.Menu;
+import states.Options;
 import states.Play;
 import main.Game;
 
@@ -47,7 +48,7 @@ public class GameStateManager {
 		
 		//TODO Create an options class
 		if(state == OPTIONS) {
-			return new Play(this);
+			return new Options(this);
 		}
 		
 		//TODO Create a credits class
