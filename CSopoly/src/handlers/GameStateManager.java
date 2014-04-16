@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import com.badlogic.gdx.Gdx;
 
+import states.Exit;
 import states.GameState;
 import states.Menu;
 import states.Options;
@@ -61,9 +62,7 @@ public class GameStateManager {
 		}
 		
 		if(state == EXIT) {
-			Gdx.app.exit();
-			//TODO Create a proper exit;
-			return null;
+			return new Exit(this);
 		}
 		
 		return null;
